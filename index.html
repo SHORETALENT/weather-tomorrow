@@ -3,7 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Translation Dropdowns</title>
+    <title>Language Translation Tool - Media Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .link-container a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,10 +84,9 @@
         <option value="fr">🇫🇷 French</option>
         <option value="de">🇩🇪 German</option>
         <option value="zh">🇨🇳 Chinese</option>
+        <option value="zh">🇨🇳 Chines2e</option>
         <!-- Add more languages as needed -->
     </select>
-
-    <br><br>
 
     <!-- Second Dropdown: Select Language to Translate To -->
     <label for="to-language">Translate To:</label>
@@ -34,8 +99,6 @@
         <!-- Add more languages as needed -->
     </select>
 
-    <br><br>
-
     <!-- Third Dropdown: Common Phrases -->
     <label for="common-phrases">Common Phrases:</label>
     <select id="common-phrases">
@@ -46,8 +109,6 @@
         <option value="please">Please</option>
         <!-- Add more phrases as needed -->
     </select>
-
-    <br><br>
 
     <!-- Fourth Dropdown: FAQs -->
     <label for="faqs">FAQs:</label>
@@ -60,10 +121,12 @@
         <!-- Add more FAQs as needed -->
     </select>
 
-    <br><br>
-
     <button type="submit">Translate</button>
 </form>
+
+<div class="link-container">
+    <p>For managing your media assets, check out our <a href="https://www.example.com/media-manager" target="_blank">Media Manager</a>.</p>
+</div>
 
 </body>
 </html>
