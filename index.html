@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast for Mankato, MN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #0077b6;
+        }
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+        .forecast-item {
+            margin: 20px 0;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .temp {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        .description {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .time {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Weather Forecast for Mankato, MN</h1>
+    <div id="forecast"></div>
+</div>
+
+<script>
+    const apiKey = 'bDzDfu2CvUSFxxZFIPk8o9Z3c28u6Y9M';
+    const apiUrl = `https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&apikey=${apiKey}`;
+
+    // Function to convert UTC to Central Time (Mankato, MN)
+    function convertToMankatoTime(utcTime) {
+        const date = new Date(utcTime * 1000); // API returns time in seconds, so convert to milliseconds
+        return date.toLocaleString('en-US', { timeZone: 'America/Chicago' });
+    }
+
+    // Function to fetch the weather data
+    async function fetchWeatherData() {
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            displayWeatherData(data);
+        } catch (error) {
+            console.error('Error fetching the weather data:', error);
+        }
+    }
+
+    // Function to display the weather data
+    function displayWeatherData(data) {
+        const forecastDiv = document.getElementById('forecast');
+        const forecasts = data.timelines.daily; // Adjust based on the API structure
+
+        forecasts.forEach(day => {
+            const forecastItem = document.createElement('div');
+            forecastItem.className = 'forecast-item';
+
+            const date = convertToMankatoTime(day.time);
+            const temp = `${Math.round(day.values.temperatureMin)}°C - ${Math.round(day.values.temperatureMax)}°C`;
+            const description = day.values.weatherCode;
+
+            // Matching icons based on weather codes (this is an example, you can add more)
+            let weatherIcon = '';
+            if (description.includes('rain')) {
+                weatherIcon = '🌧️';
+            } else if (description.includes('clear')) {
+                weatherIcon = '☀️';
+            } else if (description.includes('cloudy')) {
+                weatherIcon = '☁️';
+            } else if (description.includes('snow')) {
+                weatherIcon = '❄️';
+            }
+
+            forecastItem.innerHTML = `
+                <div class="time">${date}</div>
+                <div class="temp">${temp}</div>
+                <div class="description">${weatherIcon} ${description}</div>
+            `;
+
+            forecastDiv.appendChild(forecastItem);
+        });
+    }
+
+    // Fetch weather data on page load
+    fetchWeatherData();
+</script>
+
+</body>
+</html>
