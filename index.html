@@ -3,83 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forecast for Mankato, MN</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            text-align: center;
-        }
-        h1 {
-            color: #007bff;
-        }
-        .forecast {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #007bff;
-            border-radius: 8px;
-            background-color: #ffffff;
-            display: inline-block;
-        }
-        .icon {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
+    <title>Language Translation Dropdowns</title>
 </head>
 <body>
-    <h1>Weather Forecast for Mankato, MN</h1>
-    <div class="forecast" id="forecast"></div>
 
-    <script>
-        const apiKey = 'bDzDfu2CvUSFxxZFIPk8o9Z3c28u6Y9M';
-        const location = '42.3478,-71.0466'; // Coordinates for Mankato, MN
+<h1>Language Translation Tool</h1>
 
-        async function getWeather() {
-            try {
-                const response = await fetch(`https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${apiKey}&fields=temperature,weatherCode`);
-                const data = await response.json();
-                displayWeather(data);
-            } catch (error) {
-                console.error('Error fetching weather data:', error);
-            }
-        }
+<form>
+    <!-- First Dropdown: Select Language -->
+    <label for="from-language">Translate From:</label>
+    <select id="from-language">
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Spanish</option>
+        <option value="fr">🇫🇷 French</option>
+        <option value="de">🇩🇪 German</option>
+        <option value="zh">🇨🇳 Chinese</option>
+        <!-- Add more languages as needed -->
+    </select>
 
-        function displayWeather(data) {
-            const forecastDiv = document.getElementById('forecast');
-            forecastDiv.innerHTML = ''; // Clear previous content
+    <br><br>
 
-            const weatherData = data.data;
-            weatherData.forEach((item) => {
-                const temperature = item.temperature;
-                const weatherCode = item.weatherCode;
+    <!-- Second Dropdown: Select Language to Translate To -->
+    <label for="to-language">Translate To:</label>
+    <select id="to-language">
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Spanish</option>
+        <option value="fr">🇫🇷 French</option>
+        <option value="de">🇩🇪 German</option>
+        <option value="zh">🇨🇳 Chinese</option>
+        <!-- Add more languages as needed -->
+    </select>
 
-                // Map weather codes to icons
-                const weatherIcon = getWeatherIcon(weatherCode);
+    <br><br>
 
-                forecastDiv.innerHTML += `
-                    <div>
-                        <img src="${weatherIcon}" alt="Weather icon" class="icon">
-                        <p>Temperature: ${temperature}°F</p>
-                    </div>
-                `;
-            });
-        }
+    <!-- Third Dropdown: Common Phrases -->
+    <label for="common-phrases">Common Phrases:</label>
+    <select id="common-phrases">
+        <option value="hello">Hello</option>
+        <option value="thank_you">Thank you</option>
+        <option value="how_are_you">How are you?</option>
+        <option value="goodbye">Goodbye</option>
+        <option value="please">Please</option>
+        <!-- Add more phrases as needed -->
+    </select>
 
-        function getWeatherIcon(code) {
-            // Simple mapping of weather codes to icons
-            const icons = {
-                'clear-day': 'https://example.com/icons/clear-day.png',
-                'clear-night': 'https://example.com/icons/clear-night.png',
-                'rain': 'https://example.com/icons/rain.png',
-                'snow': 'https://example.com/icons/snow.png',
-                // Add more mappings as needed
-            };
-            return icons[code] || 'https://example.com/icons/default.png'; // Default icon
-        }
+    <br><br>
 
-        getWeather();
-    </script>
+    <!-- Fourth Dropdown: FAQs -->
+    <label for="faqs">FAQs:</label>
+    <select id="faqs">
+        <option value="how_to_translate">How to translate?</option>
+        <option value="language_support">Which languages are supported?</option>
+        <option value="accuracy">How accurate is the translation?</option>
+        <option value="contact_support">How to contact support?</option>
+        <option value="app_availability">Is there a mobile app?</option>
+        <!-- Add more FAQs as needed -->
+    </select>
+
+    <br><br>
+
+    <button type="submit">Translate</button>
+</form>
+
 </body>
 </html>
